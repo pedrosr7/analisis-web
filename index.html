@@ -3,1000 +3,100 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sistema de análisis fundamental — estado de la tesis</title>
-<meta name="description" content="Sistema de tesis de inversión vivas: diez supuestos falsables sobre Alphabet, cuatro de ellos rotos, con valoración por escenarios y validación por backtest. Toda cifra trazable a un documento de la SEC." />
+<title>Análisis fundamental — tesis de inversión vivas</title>
+<meta name="description" content="Sistema de tesis de inversión con supuestos falsables contra números públicos. Estado de cada empresa, valoración por escenarios y validación por backtest, con toda cifra trazable a un documento de la SEC." />
 <meta name="author" content="Pedro Sánchez Ramírez" />
 <meta name="color-scheme" content="light dark" />
 <meta name="theme-color" content="#EDF0E9" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#0E120F" media="(prefers-color-scheme: dark)" />
 <link rel="canonical" href="https://analysis.pampaiter.com/" />
-
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Sistema de análisis fundamental — estado de la tesis" />
-<meta property="og:description" content="Sistema de tesis de inversión vivas: diez supuestos falsables sobre Alphabet, cuatro de ellos rotos, con valoración por escenarios y validación por backtest. Toda cifra trazable a un documento de la SEC." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Análisis fundamental — tesis de inversión vivas" />
+<meta property="og:description" content="Sistema de tesis de inversión con supuestos falsables contra números públicos. Estado de cada empresa, valoración por escenarios y validación por backtest, con toda cifra trazable a un documento de la SEC." />
 <meta property="og:url" content="https://analysis.pampaiter.com/" />
 <meta property="og:locale" content="es_ES" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Sistema de análisis fundamental — estado de la tesis" />
-<meta name="twitter:description" content="Sistema de tesis de inversión vivas: diez supuestos falsables sobre Alphabet, cuatro de ellos rotos, con valoración por escenarios y validación por backtest. Toda cifra trazable a un documento de la SEC." />
-
-<style>
-:root {
-  color-scheme: light;
-  --paper:      #EDF0E9;
-  --surface:    #F7F9F4;
-  --surface-2:  #F1F4EC;
-  --band:       rgba(31,125,79,0.045);
-  --ink:        #141A15;
-  --ink-2:      #4A554B;
-  --muted:      #6E796F;
-  --rule:       #D5DDD1;
-  --rule-soft:  #E2E8DE;
-  --good:       #1F7D4F;
-  --broken:     #A32E28;
-  --warn:       #8A6212;
-  --s1:         #0F6491;
-  --s2:         #C87A05;
-  --ramp-0: #E7F0F6; --ramp-1: #CBE0EC; --ramp-2: #A9CCDF; --ramp-3: #83B6CF;
-  --ramp-4: #5C9CBC; --ramp-5: #3880A5; --ramp-6: #17638A;
-  --ramp-ink-lo: #14262F; --ramp-ink-hi: #F2F7FA;
-
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
-  --mono: ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --paper:      #0E120F;
-    --surface:    #161B17;
-    --surface-2:  #1B211C;
-    --band:       rgba(79,168,124,0.055);
-    --ink:        #E8EDE6;
-    --ink-2:      #A7B2A6;
-    --muted:      #7E8A7F;
-    --rule:       #2A332B;
-    --rule-soft:  #222A23;
-    --good:       #4FA87C;
-    --broken:     #E0736B;
-    --warn:       #C9A24A;
-    --s1:         #3C93C2;
-    --s2:         #BD8320;
-    --ramp-0: #14262F; --ramp-1: #1B3A4A; --ramp-2: #235066; --ramp-3: #2B6683;
-    --ramp-4: #3480A2; --ramp-5: #4C9CBF; --ramp-6: #6FB6D4;
-    --ramp-ink-lo: #9FBCCB; --ramp-ink-hi: #08161D;
-  }
-}
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --paper:      #0E120F;
-  --surface:    #161B17;
-  --surface-2:  #1B211C;
-  --band:       rgba(79,168,124,0.055);
-  --ink:        #E8EDE6;
-  --ink-2:      #A7B2A6;
-  --muted:      #7E8A7F;
-  --rule:       #2A332B;
-  --rule-soft:  #222A23;
-  --good:       #4FA87C;
-  --broken:     #E0736B;
-  --warn:       #C9A24A;
-  --s1:         #3C93C2;
-  --s2:         #BD8320;
-  --ramp-0: #14262F; --ramp-1: #1B3A4A; --ramp-2: #235066; --ramp-3: #2B6683;
-  --ramp-4: #3480A2; --ramp-5: #4C9CBF; --ramp-6: #6FB6D4;
-  --ramp-ink-lo: #9FBCCB; --ramp-ink-hi: #08161D;
-}
-
-* { box-sizing: border-box; }
-
-body, .page {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.62;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-}
-
-.page { padding: 0 20px 96px; }
-
-.col { max-width: 68ch; margin: 0 auto; }
-.wide { max-width: 1080px; margin: 0 auto; }
-
-h1, h2, h3 { text-wrap: balance; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
-h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.08; }
-h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); line-height: 1.18; }
-h3 { font-size: 1.12rem; line-height: 1.3; }
-p { margin: 0 0 1.1em; }
-p:last-child { margin-bottom: 0; }
-a { color: var(--s1); }
-
-.eyebrow {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 0.7em;
-  display: block;
-}
-
-.num { font-family: var(--mono); font-variant-numeric: tabular-nums lining-nums; }
-
-/* ---------- masthead ---------- */
-.masthead {
-  border-bottom: 2px solid var(--ink);
-  padding: 56px 0 26px;
-  margin-bottom: 0;
-}
-.masthead .lede {
-  font-size: 1.16rem;
-  color: var(--ink-2);
-  margin-top: 0.9em;
-  max-width: 60ch;
-}
-.dateline {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 22px;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.05em;
-  color: var(--muted);
-  padding: 12px 0 0;
-}
-
-/* ---------- headline state strip ---------- */
-.state-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  margin: 0 0 64px;
-}
-.state-cell {
-  padding: 22px 20px 20px;
-  border-right: 1px solid var(--rule-soft);
-}
-.state-cell:last-child { border-right: 0; }
-.state-cell .k {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 6px;
-}
-.state-cell .v {
-  display: block;
-  font-family: var(--mono);
-  font-size: 1.72rem;
-  font-variant-numeric: tabular-nums lining-nums;
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-.state-cell .v .u { font-size: 0.98rem; letter-spacing: 0; margin-left: 1px; }
-.state-cell .sub {
-  display: block;
-  font-size: 0.8rem;
-  color: var(--ink-2);
-  margin-top: 9px;
-  line-height: 1.4;
-  max-width: 24ch;
-}
-.v.is-broken { color: var(--broken); }
-.v.is-good { color: var(--good); }
-
-section { margin: 0 0 76px; }
-.section-head { margin-bottom: 28px; }
-.section-head p { color: var(--ink-2); margin-top: 0.7em; }
-
-/* ---------- ledger (greenbar) ---------- */
-.ledger {
-  border: 1px solid var(--rule);
-  background: var(--surface);
-  overflow-x: auto;
-}
-table.grid {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  min-width: 660px;
-}
-table.grid thead th {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 500;
-  text-align: left;
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--rule);
-  white-space: nowrap;
-}
-table.grid tbody tr:nth-child(even) { background: var(--band); }
-table.grid td {
-  padding: 13px 16px;
-  border-bottom: 1px solid var(--rule-soft);
-  vertical-align: top;
-}
-table.grid tbody tr:last-child td { border-bottom: 0; }
-table.grid td.r, table.grid thead th.r { text-align: right; }
-.sid {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-.stmt { max-width: 34ch; line-height: 1.45; }
-.figure { font-family: var(--mono); font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
-.thr { color: var(--muted); }
-.delta { font-size: 0.76rem; color: var(--muted); display: block; margin-top: 3px; }
-tr.broken td { background: rgba(163,43,40,0.055); }
-tr.broken td:first-child { box-shadow: inset 3px 0 0 var(--broken); }
-:root[data-theme="dark"] tr.broken td,
-:root:not([data-theme="light"]) tr.broken td { }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) tr.broken td { background: rgba(224,115,107,0.075); }
-}
-:root[data-theme="dark"] tr.broken td { background: rgba(224,115,107,0.075); }
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  padding: 3px 9px 3px 7px;
-  border: 1px solid currentColor;
-  border-radius: 2px;
-  white-space: nowrap;
-}
-.pill.ok { color: var(--good); }
-.pill.no { color: var(--broken); }
-.pill .dot { width: 7px; height: 7px; flex: none; }
-.pill.ok .dot { background: currentColor; }
-.pill.no .dot { background: currentColor; transform: rotate(45deg); }
-
-/* ---------- figures / charts ---------- */
-figure { margin: 0; }
-.chart-card {
-  border: 1px solid var(--rule);
-  background: var(--surface);
-  padding: 22px 22px 18px;
-}
-.chart-card + .chart-card { margin-top: 22px; }
-.chart-title { font-size: 1.02rem; font-weight: 600; margin: 0 0 4px; }
-.chart-sub { font-size: 0.84rem; color: var(--ink-2); margin: 0 0 18px; max-width: 62ch; line-height: 1.45; }
-figcaption {
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid var(--rule-soft);
-  line-height: 1.5;
-}
-.chart-scroll { overflow-x: auto; }
-svg.chart { display: block; width: 100%; height: auto; min-width: 480px; }
-svg text { font-family: var(--mono); fill: var(--muted); font-size: 11px; }
-svg text.val { font-size: 11.5px; }
-svg .gridline { stroke: var(--rule-soft); stroke-width: 1; }
-svg .axis { stroke: var(--rule); stroke-width: 1; }
-
-.legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--ink-2);
-  margin-bottom: 14px;
-}
-.legend span { display: inline-flex; align-items: center; gap: 7px; }
-.swatch { width: 13px; height: 3px; flex: none; }
-.swatch.sq { height: 11px; width: 11px; }
-
-.hit { cursor: crosshair; }
-.hit:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-
-#tip {
-  position: fixed;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .1s;
-  background: var(--surface);
-  color: var(--ink);
-  border: 1px solid var(--rule);
-  box-shadow: 0 6px 22px rgba(0,0,0,.14);
-  padding: 8px 11px;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  line-height: 1.45;
-  max-width: 260px;
-}
-#tip .tk { color: var(--muted); display: block; font-size: 0.68rem; letter-spacing: .06em; text-transform: uppercase; }
-#tip.on { opacity: 1; }
-
-/* ---------- heatmap ---------- */
-.heat { border-collapse: separate; border-spacing: 2px; width: 100%; min-width: 520px; }
-.heat th {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--muted);
-  font-weight: 500;
-  padding: 6px 8px;
-  white-space: nowrap;
-}
-.heat th.rowh { text-align: right; width: 1%; white-space: nowrap; padding-right: 14px; }
-.heat td {
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums lining-nums;
-  font-size: 0.82rem;
-  text-align: center;
-  padding: 11px 4px;
-  border-radius: 2px;
-}
-.s0 { background: var(--ramp-0); color: var(--ramp-ink-lo); }
-.s1c { background: var(--ramp-1); color: var(--ramp-ink-lo); }
-.s2c { background: var(--ramp-2); color: var(--ramp-ink-lo); }
-.s3c { background: var(--ramp-3); color: var(--ramp-ink-lo); }
-.s4c { background: var(--ramp-4); color: var(--ramp-ink-hi); }
-.s5c { background: var(--ramp-5); color: var(--ramp-ink-hi); }
-.s6c { background: var(--ramp-6); color: var(--ramp-ink-hi); }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .s0, :root:not([data-theme="light"]) .s1c,
-  :root:not([data-theme="light"]) .s2c, :root:not([data-theme="light"]) .s3c { color: var(--ramp-ink-lo); }
-  :root:not([data-theme="light"]) .s4c, :root:not([data-theme="light"]) .s5c,
-  :root:not([data-theme="light"]) .s6c { color: var(--ramp-ink-hi); }
-}
-.heat-scale {
-  display: flex; align-items: center; gap: 9px;
-  font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
-  margin-top: 14px;
-}
-.heat-scale .steps { display: flex; }
-.heat-scale .steps i { width: 22px; height: 10px; display: block; }
-
-/* ---------- pipeline ---------- */
-.flow {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-.flow .step { background: var(--surface); padding: 18px 18px 20px; }
-.flow .step .n {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 9px;
-}
-.flow .step h3 { font-size: 0.98rem; margin-bottom: 6px; }
-.flow .step p { font-size: 0.82rem; color: var(--ink-2); line-height: 1.45; margin: 0; }
-
-/* ---------- backtest cards ---------- */
-.cases { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.case {
-  border: 1px solid var(--rule);
-  background: var(--surface);
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.case .tick {
-  font-family: var(--mono);
-  font-size: 1.28rem;
-  letter-spacing: 0.02em;
-  line-height: 1;
-}
-.case .kind {
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.case .verdict { font-size: 0.92rem; line-height: 1.5; color: var(--ink-2); }
-.case .verdict strong { color: var(--ink); font-weight: 600; }
-.case .score {
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.04em;
-  padding-top: 12px;
-  border-top: 1px solid var(--rule-soft);
-  margin-top: auto;
-}
-
-/* ---------- callout ---------- */
-.callout {
-  border-left: 3px solid var(--warn);
-  background: var(--surface-2);
-  padding: 18px 22px;
-  font-size: 0.94rem;
-  line-height: 1.55;
-}
-.callout .lbl {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--warn);
-  display: block;
-  margin-bottom: 7px;
-}
-
-/* ---------- gaps list ---------- */
-ul.gaps { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule); }
-ul.gaps li:last-child { border-bottom: 0; }
-ul.gaps li {
-  padding: 15px 0;
-  border-bottom: 1px solid var(--rule-soft);
-  display: grid;
-  grid-template-columns: 132px 1fr;
-  gap: 18px;
-  font-size: 0.92rem;
-  line-height: 1.5;
-}
-ul.gaps .tag {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding-top: 3px;
-}
-@media (max-width: 560px) {
-  ul.gaps li { grid-template-columns: 1fr; gap: 5px; }
-}
-
-/* El pie cierra con una regla a todo el ancho, en simetría con la del
-   encabezado. No hereda el ancho de .col porque la unidad ch se resuelve
-   sobre su propia fuente mono, que es más estrecha y lo descuadraría. */
-.foot {
-  max-width: none;
-  margin-top: 72px;
-  border-top: 2px solid var(--ink);
-  padding-top: 20px;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.foot p { max-width: 74ch; }
-
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; animation: none !important; }
-}
-
-/* ---------- selector de tema (solo en la versión autoalojada) ---------- */
-.theme-toggle {
-  position: fixed; top: 16px; right: 16px; z-index: 40;
-  display: inline-flex; align-items: center; gap: 7px;
-  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--ink-2);
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: 2px; padding: 7px 11px; cursor: pointer;
-}
-.theme-toggle:hover { color: var(--ink); border-color: var(--ink-2); }
-.theme-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-.theme-toggle .ic { width: 9px; height: 9px; background: currentColor; border-radius: 50%; }
-@media print { .theme-toggle { display: none; } }
-</style>
+<meta name="twitter:title" content="Análisis fundamental — tesis de inversión vivas" />
+<meta name="twitter:description" content="Sistema de tesis de inversión con supuestos falsables contra números públicos. Estado de cada empresa, valoración por escenarios y validación por backtest, con toda cifra trazable a un documento de la SEC." />
+<link rel="stylesheet" href="assets/base.css" />
 </head>
 <body>
-<button class="theme-toggle" type="button" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro"><i class="ic"></i><span id="themeLabel">Tema</span></button>
+<div class="sitebar">
+  <a class="brand" href="./">Análisis fundamental</a>
+  <nav><a href="./" aria-current="page">Índice</a><a href="./googl/">GOOGL</a><button class="theme-toggle" type="button" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro"><i class="ic"></i><span id="themeLabel">Tema</span></button></nav>
+</div>
 <div class="page">
 
 <div class="wide">
   <header class="masthead">
     <span class="eyebrow">Sistema de tesis de inversión vivas</span>
-    <h1>Cuatro de diez supuestos<br>sobre Alphabet están rotos.</h1>
-    <p class="lede">Este repositorio no guarda opiniones sobre empresas: guarda <em>afirmaciones falsables con un número público</em>, y las revisa cuando llega evidencia nueva. Lo que sigue es el estado real del sistema tras construir sus cinco fases sobre una empresa piloto.</p>
+    <h1>Afirmaciones que se<br>pueden romper.</h1>
+    <p class="lede">Cada empresa aquí no tiene una opinión, tiene entre ocho y doce afirmaciones comprobables contra un número público. Cuando llega evidencia nueva se revisan una a una, y las que no sobreviven se marcan como rotas — no se reescriben para que encajen.</p>
     <div class="dateline">
-      <span>Revisión · 27 jul 2026</span>
-      <span>Empresa · GOOGL (Alphabet Inc.)</span>
-      <span>Evidencia · 10-K FY2025 · 10-Q Q2 2026 · 8-K · DEF 14A · Forms 3/4/5</span>
+      <span>Última revisión · 27 jul 2026</span>
       <span>Fuente · SEC EDGAR</span>
+      <span>Cobertura · 1 tesis + 48 en banquillo</span>
     </div>
   </header>
 </div>
 
-<div class="wide">
-  <div class="state-strip">
-    <div class="state-cell">
-      <span class="k">Supuestos rotos</span>
-      <span class="v num is-broken">4 / 10</span>
-      <span class="sub">Tres de ellos con impacto alto sobre la tesis</span>
-    </div>
-    <div class="state-cell">
-      <span class="k">Capex / ingresos</span>
-      <span class="v num is-broken">37,5<span class="u"> %</span></span>
-      <span class="sub">Umbral 30 %. Era 22,7 % en el ejercicio FY2025</span>
-    </div>
-    <div class="state-cell">
-      <span class="k">Margen FCF</span>
-      <span class="v num is-broken">1,9<span class="u"> %</span></span>
-      <span class="sub">Umbral 15 %. Era 18,2 % un semestre antes</span>
-    </div>
-    <div class="state-cell">
-      <span class="k">Crecimiento Cloud</span>
-      <span class="v num is-good">81,8<span class="u"> %</span></span>
-      <span class="sub">Interanual en Q2 2026. Umbral 40 %</span>
-    </div>
-    <div class="state-cell">
-      <span class="k">Cobertura</span>
-      <span class="v num">1 + 48</span>
-      <span class="sub">Una tesis en profundidad, 48 empresas en el banquillo</span>
-    </div>
-  </div>
-</div>
-
-<!-- ============ 1. QUÉ ES ============ -->
 <section class="wide">
   <div class="col section-head">
-    <span class="eyebrow">El método</span>
-    <h2>Una tesis que se actualiza por diferencia, no por reescritura</h2>
-    <p>La regla central del repositorio es que nadie —ni una persona ni un modelo— reescribe la tesis entera cuando llegan datos nuevos. Se edita solo lo que la evidencia toca, y cada supuesto que se rompe queda marcado como roto <em>en su sitio</em>, con su historial intacto. No se reformula para que encaje con los datos que llegaron después.</p>
+    <span class="eyebrow">Tesis vivas</span>
+    <h2>Empresas con tesis en profundidad</h2>
+    <p>El objetivo del sistema son quince. Cada tarjeta muestra el estado actual de sus supuestos: verde el que aguanta, rojo el que se rompió.</p>
   </div>
-  <div class="flow">
-    <div class="step">
-      <span class="n">FASE 1</span>
-      <h3>Evidencia</h3>
-      <p>Documentos originales del regulador en <span class="num">evidencia/</span>, nombrados por número de expediente para que nada se descargue dos veces.</p>
-    </div>
-    <div class="step">
-      <span class="n">FASE 1</span>
-      <h3>Supuestos</h3>
-      <p>Entre 8 y 12 por empresa. Cada uno con métrica, operador, umbral y fuente citada. Escritos a mano: es donde se define si hay criterio.</p>
-    </div>
-    <div class="step">
-      <span class="n">FASE 2</span>
-      <h3>Motor</h3>
-      <p>La valoración sale de código determinista, nunca de la prosa. Tres escenarios, dos métodos de valor terminal, malla de sensibilidad.</p>
-    </div>
-    <div class="step">
-      <span class="n">FASE 3–4</span>
-      <h3>Ingesta y calendario</h3>
-      <p>Un comando trae lo que falta de EDGAR. El calendario abre una rama cuando un evento entra en ventana de 48 horas.</p>
-    </div>
-    <div class="step">
-      <span class="n">FASE 5</span>
-      <h3>Control</h3>
-      <p>Backtest contra 2019 y un informe que detecta supuestos revisados de más — la señal de que se está moviendo la portería.</p>
+
+  <div class="fichas">
+    <a class="ficha" href="googl/">
+      <span class="tk">GOOGL</span>
+      <span class="nm">Alphabet Inc. · NASDAQ</span>
+      <span class="barra" role="img" aria-label="6 supuestos vigentes de 10, 4 rotos">
+        <i></i><i></i><i></i><i></i><i class="no"></i><i class="no"></i><i class="no"></i><i></i><i class="no"></i><i></i>
+      </span>
+      <span class="pie">4 de 10 rotos · rev. 27 jul 2026</span>
+    </a>
+    <div class="ficha vacia">
+      <span class="pie" style="border:0;padding:0;margin:0">Quedan 14 plazas.<br>Se añaden de una en una, a mano.</span>
     </div>
   </div>
 </section>
 
-<!-- ============ 2. EL LIBRO DE SUPUESTOS ============ -->
 <section class="wide">
   <div class="col section-head">
-    <span class="eyebrow">El instrumento principal</span>
-    <h2>El libro de supuestos</h2>
-    <p>Este es el producto real del sistema. No un precio objetivo, sino el estado de diez afirmaciones que se pueden comprobar contra un número público. Cuatro no sobrevivieron a la evidencia de julio.</p>
+    <span class="eyebrow">Alta de empresa</span>
+    <h2>Añadir una empresa al sistema</h2>
+    <p>Escribe un ticker y esta página comprueba contra la SEC que existe y qué ha presentado. <strong>No ejecuta el análisis</strong>: eso es Python contra los documentos originales y corre en tu máquina. Lo que sale de aquí son los comandos exactos, listos para pegar.</p>
   </div>
 
-  <div class="ledger">
-    <table class="grid">
-      <thead>
-        <tr>
-          <th>Supuesto</th>
-          <th>Afirmación</th>
-          <th class="r">Umbral</th>
-          <th class="r">Valor actual</th>
-          <th>Estado</th>
-          <th>Impacto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="sid">crecimiento_ingresos_3y</td>
-          <td class="stmt">Ingresos consolidados crecen a un CAGR de tres años igual o superior al 12 %</td>
-          <td class="r figure thr">≥ 12,0 %</td>
-          <td class="r figure">12,5 %<span class="delta">+0,5 pp de margen</span></td>
-          <td><span class="pill ok"><i class="dot"></i>Vigente</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr>
-          <td class="sid">crecimiento_cloud</td>
-          <td class="stmt">Google Cloud crece un 40 % o más interanual</td>
-          <td class="r figure thr">≥ 40,0 %</td>
-          <td class="r figure">81,8 %<span class="delta">+41,8 pp de margen</span></td>
-          <td><span class="pill ok"><i class="dot"></i>Vigente</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr>
-          <td class="sid">margen_operativo_cloud</td>
-          <td class="stmt">El margen operativo de Cloud se mantiene en expansión, por encima del 20 %</td>
-          <td class="r figure thr">≥ 20,0 %</td>
-          <td class="r figure">35,6 %<span class="delta">+15,6 pp de margen</span></td>
-          <td><span class="pill ok"><i class="dot"></i>Vigente</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr>
-          <td class="sid">margen_operativo_consolidado</td>
-          <td class="stmt">El margen operativo consolidado se sostiene por encima del 28 %</td>
-          <td class="r figure thr">≥ 28,0 %</td>
-          <td class="r figure">32,0 %<span class="delta">+4,0 pp de margen</span></td>
-          <td><span class="pill ok"><i class="dot"></i>Vigente</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr class="broken">
-          <td class="sid">intensidad_capex</td>
-          <td class="stmt">El capex trimestral se mantiene por debajo del 30 % de los ingresos</td>
-          <td class="r figure thr">≤ 30,0 %</td>
-          <td class="r figure">37,5 %<span class="delta">+7,5 pp sobre el umbral</span></td>
-          <td><span class="pill no"><i class="dot"></i>Roto</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr class="broken">
-          <td class="sid">fcf_margin</td>
-          <td class="stmt">El flujo de caja libre se mantiene en el 15 % de los ingresos o más</td>
-          <td class="r figure thr">≥ 15,0 %</td>
-          <td class="r figure">1,9 %<span class="delta">−13,1 pp bajo el umbral</span></td>
-          <td><span class="pill no"><i class="dot"></i>Roto</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr class="broken">
-          <td class="sid">dilucion_acciones</td>
-          <td class="stmt">Las acciones en circulación se mantienen estables o decrecientes</td>
-          <td class="r figure thr">≤ 0,00 %</td>
-          <td class="r figure">+1,17 %<span class="delta">Primera reversión desde 2022</span></td>
-          <td><span class="pill no"><i class="dot"></i>Roto</span></td>
-          <td class="sid">Medio</td>
-        </tr>
-        <tr>
-          <td class="sid">apalancamiento</td>
-          <td class="stmt">La deuda de largo plazo no supera el 20 % del patrimonio</td>
-          <td class="r figure thr">≤ 20,0 %</td>
-          <td class="r figure">15,3 %<span class="delta">Denominador distorsionado (ver abajo)</span></td>
-          <td><span class="pill ok"><i class="dot"></i>Vigente</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr class="broken">
-          <td class="sid">calidad_beneficio</td>
-          <td class="stmt">El beneficio neto no crece más de 10 puntos por encima del operativo</td>
-          <td class="r figure thr">≤ 10 pp</td>
-          <td class="r figure">268 pp<span class="delta">+258 pp sobre el umbral</span></td>
-          <td><span class="pill no"><i class="dot"></i>Roto</span></td>
-          <td class="sid">Alto</td>
-        </tr>
-        <tr>
-          <td class="sid">eficiencia_tac</td>
-          <td class="stmt">Los costes de adquisición de tráfico no superan el 20 % de los ingresos de Services</td>
-          <td class="r figure thr">≤ 20,0 %</td>
-          <td class="r figure">17,1 %<span class="delta">2,9 pp de margen</span></td>
-          <td><span class="pill ok"><i class="dot"></i>Vigente</span></td>
-          <td class="sid">Medio</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col" style="margin-top:22px">
-    <div class="callout">
-      <span class="lbl">Lo que la disciplina obliga a decir</span>
-      <p style="margin:0">El supuesto de apalancamiento sigue técnicamente vigente <em>solo porque el patrimonio saltó un 54 % en seis meses</em>, y ese salto viene de la misma ganancia no realizada que rompió la calidad del beneficio. El ratio es correcto y engañoso a la vez. La regla del repositorio prohíbe relajar el supuesto para que la foto quede mejor: se deja vigente y se anota la distorsión.</p>
+  <div class="col">
+    <div class="alta">
+      <form id="formAlta" autocomplete="off">
+        <div class="fila">
+          <label for="ticker" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Ticker</label>
+          <input type="text" id="ticker" name="ticker" placeholder="NVDA" maxlength="12" spellcheck="false" />
+          <button type="submit" id="btnAlta">Comprobar</button>
+        </div>
+      </form>
+      <div class="res" id="resultado" aria-live="polite"></div>
     </div>
+    <p style="font-size:0.82rem;color:var(--muted);margin-top:14px;line-height:1.55">
+      Solo cubre empresas que reportan a la SEC (mercados de EE.&nbsp;UU.). Japón y el resto de mercados necesitan las fuentes de la fase 3, todavía sin conectar.
+    </p>
   </div>
 </section>
 
-<!-- ============ 3. LO QUE LA EVIDENCIA MOSTRÓ ============ -->
 <section class="wide">
   <div class="col section-head">
-    <span class="eyebrow">Lectura de la evidencia</span>
-    <h2>Una empresa financiando una apuesta enorme</h2>
-    <p>Los cuatro supuestos rotos no son cuatro problemas distintos: son la misma decisión vista desde cuatro ángulos. Alphabet está construyendo capacidad de cómputo para inteligencia artificial a una velocidad que su propia generación de caja no cubre, y lo está financiando con deuda y con emisión de acciones.</p>
-  </div>
-
-  <figure class="chart-card">
-    <h3 class="chart-title">El capex rompió su techo, y no fue un pico aislado</h3>
-    <p class="chart-sub">Compra de propiedad y equipo como porcentaje de los ingresos del período. El semestre completo también supera el umbral, lo que descarta que sea un trimestre atípico.</p>
-    <div class="chart-scroll">
-      <svg class="chart" viewBox="0 0 760 250" role="img" aria-label="Capex sobre ingresos: 15,0% en FY2024, 22,7% en FY2025, 35,1% en el primer semestre de 2026 y 37,5% en el segundo trimestre de 2026, frente a un umbral del 30%.">
-        <line class="gridline" x1="64" y1="200" x2="740" y2="200"/>
-        <line class="gridline" x1="64" y1="143.3" x2="740" y2="143.3"/>
-        <line class="gridline" x1="64" y1="86.7" x2="740" y2="86.7"/>
-        <line class="gridline" x1="64" y1="30" x2="740" y2="30"/>
-        <text x="56" y="204" text-anchor="end">0 %</text>
-        <text x="56" y="147" text-anchor="end">15 %</text>
-        <text x="56" y="90" text-anchor="end">30 %</text>
-        <text x="56" y="34" text-anchor="end">45 %</text>
-
-        <rect class="hit" x="98" y="143.3" width="92" height="56.7" fill="var(--s1)" rx="0" data-k="FY 2024" data-v="15,0 % · capex 52.535 M$ sobre 350.018 M$"/>
-        <rect class="hit" x="258" y="114.2" width="92" height="85.8" fill="var(--s1)" data-k="FY 2025" data-v="22,7 % · capex 91.447 M$ sobre 402.836 M$"/>
-        <rect class="hit" x="418" y="67.4" width="92" height="132.6" fill="var(--broken)" data-k="H1 2026" data-v="35,1 % · capex 80.598 M$ sobre 229.692 M$"/>
-        <rect class="hit" x="578" y="58.3" width="92" height="141.7" fill="var(--broken)" data-k="Q2 2026" data-v="37,5 % · capex 44.924 M$ sobre 119.796 M$"/>
-
-        <line x1="64" y1="86.7" x2="740" y2="86.7" stroke="var(--broken)" stroke-width="1.5" stroke-dasharray="5 4"/>
-        <text x="72" y="79" text-anchor="start" fill="var(--broken)" style="font-size:11px">UMBRAL 30 %</text>
-
-        <text class="val" x="144" y="136" text-anchor="middle" fill="var(--ink)">15,0</text>
-        <text class="val" x="304" y="107" text-anchor="middle" fill="var(--ink)">22,7</text>
-        <text class="val" x="464" y="60" text-anchor="middle" fill="var(--broken)">35,1</text>
-        <text class="val" x="624" y="51" text-anchor="middle" fill="var(--broken)">37,5</text>
-
-        <text x="144" y="220" text-anchor="middle">FY 2024</text>
-        <text x="304" y="220" text-anchor="middle">FY 2025</text>
-        <text x="464" y="220" text-anchor="middle">H1 2026</text>
-        <text x="624" y="220" text-anchor="middle">Q2 2026</text>
-        <line class="axis" x1="64" y1="200" x2="740" y2="200"/>
-      </svg>
-    </div>
-    <figcaption>Fuente: 10-K FY2025 y 10-Q Q2 2026 (SEC EDGAR). El capex creció un 100 % interanual en el trimestre; los ingresos, un 24 %.</figcaption>
-  </figure>
-
-  <figure class="chart-card">
-    <h3 class="chart-title">El retorno sobre el capital cayó por primera vez en nueve años</h3>
-    <p class="chart-sub">ROIC anual estimado como NOPAT sobre capital invertido, con tasa impositiva efectiva de cada ejercicio. La caída de 2025 coincide con un salto del 38 % en el capital invertido que todavía no produjo el retorno proporcional.</p>
-    <div class="chart-scroll">
-      <svg class="chart" viewBox="0 0 760 260" role="img" aria-label="ROIC de Alphabet entre 2017 y 2025: sube de 8,4% a 30,1% y cae a 24,9% en 2025.">
-        <line class="gridline" x1="56" y1="210" x2="740" y2="210"/>
-        <line class="gridline" x1="56" y1="156.9" x2="740" y2="156.9"/>
-        <line class="gridline" x1="56" y1="103.7" x2="740" y2="103.7"/>
-        <line class="gridline" x1="56" y1="50.6" x2="740" y2="50.6"/>
-        <text x="48" y="214" text-anchor="end">0 %</text>
-        <text x="48" y="161" text-anchor="end">10 %</text>
-        <text x="48" y="108" text-anchor="end">20 %</text>
-        <text x="48" y="55" text-anchor="end">30 %</text>
-
-        <polyline fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-          points="56,165.4 137,131.9 217,125.5 298,116.5 378,58.0 459,67.0 539,67.6 620,50.0 700,77.7"/>
-        <line x1="620" y1="50.0" x2="700" y2="77.7" stroke="var(--broken)" stroke-width="2.5" stroke-linecap="round"/>
-
-        <circle class="hit" cx="56"  cy="165.4" r="4" fill="var(--s1)" data-k="2017" data-v="ROIC 8,4 %"/>
-        <circle class="hit" cx="137" cy="131.9" r="4" fill="var(--s1)" data-k="2018" data-v="ROIC 14,7 %"/>
-        <circle class="hit" cx="217" cy="125.5" r="4" fill="var(--s1)" data-k="2019" data-v="ROIC 15,9 %"/>
-        <circle class="hit" cx="298" cy="116.5" r="4" fill="var(--s1)" data-k="2020" data-v="ROIC 17,6 %"/>
-        <circle class="hit" cx="378" cy="58.0"  r="4" fill="var(--s1)" data-k="2021" data-v="ROIC 28,6 %"/>
-        <circle class="hit" cx="459" cy="67.0"  r="4" fill="var(--s1)" data-k="2022" data-v="ROIC 26,9 %"/>
-        <circle class="hit" cx="539" cy="67.6"  r="4" fill="var(--s1)" data-k="2023" data-v="ROIC 26,8 %"/>
-        <circle class="hit" cx="620" cy="50.0"  r="5" fill="var(--s1)" data-k="2024" data-v="ROIC 30,1 % · máximo de la serie"/>
-        <circle class="hit" cx="700" cy="77.7"  r="5.5" fill="var(--broken)" stroke="var(--surface)" stroke-width="2" data-k="2025" data-v="ROIC 24,9 % · primera caída en nueve años"/>
-
-        <text class="val" x="620" y="38" text-anchor="middle" fill="var(--ink)">30,1</text>
-        <text class="val" x="700" y="97" text-anchor="middle" fill="var(--broken)">24,9</text>
-        <text class="val" x="56" y="182" text-anchor="start" fill="var(--ink-2)">8,4</text>
-
-        <text x="56" y="232" text-anchor="middle">2017</text>
-        <text x="298" y="232" text-anchor="middle">2020</text>
-        <text x="539" y="232" text-anchor="middle">2023</text>
-        <text x="700" y="232" text-anchor="middle">2025</text>
-        <line class="axis" x1="56" y1="210" x2="740" y2="210"/>
-      </svg>
-    </div>
-    <figcaption>Fuente: SEC EDGAR XBRL. Los ejercicios 2013–2016 se omiten porque la etiqueta de impuesto sobre resultado antes de impuestos no está disponible; se prefiere el hueco a la estimación.</figcaption>
-  </figure>
-
-  <figure class="chart-card">
-    <h3 class="chart-title">Y a la vez: Cloud dejó de ser una promesa</h3>
-    <p class="chart-sub">Margen operativo por segmento. El negocio que justifica la inversión está cerrando la distancia con el negocio maduro que la financia — de 30 puntos de diferencia a 6 en tres años.</p>
-    <div class="legend">
-      <span><i class="swatch" style="background:var(--s1)"></i>Google Services</span>
-      <span><i class="swatch" style="background:var(--s2)"></i>Google Cloud</span>
-    </div>
-    <div class="chart-scroll">
-      <svg class="chart" viewBox="0 0 760 260" role="img" aria-label="Margen operativo: Google Services pasa de 35,2% a 41,8% y Google Cloud de 5,2% a 35,6% entre 2023 y el segundo trimestre de 2026.">
-        <line class="gridline" x1="70" y1="210" x2="740" y2="210"/>
-        <line class="gridline" x1="70" y1="170" x2="740" y2="170"/>
-        <line class="gridline" x1="70" y1="130" x2="740" y2="130"/>
-        <line class="gridline" x1="70" y1="90" x2="740" y2="90"/>
-        <line class="gridline" x1="70" y1="50" x2="740" y2="50"/>
-        <text x="62" y="214" text-anchor="end">0 %</text>
-        <text x="62" y="174" text-anchor="end">10 %</text>
-        <text x="62" y="134" text-anchor="end">20 %</text>
-        <text x="62" y="94" text-anchor="end">30 %</text>
-        <text x="62" y="54" text-anchor="end">40 %</text>
-
-        <polyline fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-          points="70,69.2 260,50.8 450,47.2 640,42.8"/>
-        <polyline fill="none" stroke="var(--s2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-          points="70,189.2 260,153.6 450,115.2 640,67.6"/>
-
-        <circle class="hit" cx="70"  cy="69.2"  r="4" fill="var(--s1)" data-k="Services · 2023" data-v="35,2 % — 95.858 M$ sobre 272.543 M$"/>
-        <circle class="hit" cx="260" cy="50.8"  r="4" fill="var(--s1)" data-k="Services · 2024" data-v="39,8 % — 121.263 M$ sobre 304.930 M$"/>
-        <circle class="hit" cx="450" cy="47.2"  r="4" fill="var(--s1)" data-k="Services · 2025" data-v="40,7 % — 139.404 M$ sobre 342.721 M$"/>
-        <circle class="hit" cx="640" cy="42.8"  r="4" fill="var(--s1)" data-k="Services · Q2 2026" data-v="41,8 % — 39.544 M$ sobre 94.540 M$"/>
-
-        <circle class="hit" cx="70"  cy="189.2" r="4" fill="var(--s2)" data-k="Cloud · 2023" data-v="5,2 % — 1.716 M$ sobre 33.088 M$"/>
-        <circle class="hit" cx="260" cy="153.6" r="4" fill="var(--s2)" data-k="Cloud · 2024" data-v="14,1 % — 6.112 M$ sobre 43.229 M$"/>
-        <circle class="hit" cx="450" cy="115.2" r="4" fill="var(--s2)" data-k="Cloud · 2025" data-v="23,7 % — 13.910 M$ sobre 58.705 M$"/>
-        <circle class="hit" cx="640" cy="67.6"  r="5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2" data-k="Cloud · Q2 2026" data-v="35,6 % — 8.814 M$ sobre 24.768 M$"/>
-
-        <text class="val" x="70" y="60" text-anchor="start" fill="var(--ink-2)">35,2</text>
-        <text class="val" x="640" y="33" text-anchor="end" fill="var(--ink-2)">41,8</text>
-        <text class="val" x="70" y="205" text-anchor="start" fill="var(--ink-2)">5,2</text>
-        <text class="val" x="640" y="58" text-anchor="end" fill="var(--ink-2)">35,6</text>
-
-        <text x="70" y="232" text-anchor="middle">2023</text>
-        <text x="260" y="232" text-anchor="middle">2024</text>
-        <text x="450" y="232" text-anchor="middle">2025</text>
-        <text x="640" y="232" text-anchor="middle">Q2 2026</text>
-        <line class="axis" x1="70" y1="210" x2="740" y2="210"/>
-      </svg>
-    </div>
-    <figcaption>Fuente: nota de segmentos del 10-K FY2025 y comunicado de resultados Q2 2026. Ambas series son márgenes operativos del mismo tipo, sobre un único eje.</figcaption>
-  </figure>
-
-  <div class="col" style="margin-top:34px">
-    <h3 style="margin-bottom:0.5em">El hallazgo que obligó a subir un supuesto de medio a alto</h3>
-    <p>El beneficio neto del último trimestre casi se cuadruplicó: de <span class="num">28.196</span> a <span class="num">112.193</span> millones de dólares, un 298 % interanual. La discusión de la propia dirección en el 10-Q explica por qué no significa lo que parece: <strong>unos 99.000 millones de esa cifra son una ganancia no realizada en la cartera de participaciones</strong>, no resultado del negocio. El beneficio operativo —la métrica que sí mide la operación— creció un 30,4 %.</p>
-    <p>Es el caso de manual de por qué el repositorio prohíbe que la valoración salga de la prosa. Cualquier múltiplo calculado sobre el beneficio neto reportado de este trimestre daría una lectura profundamente equivocada de la capacidad de generar valor de la empresa.</p>
-  </div>
-</section>
-
-<!-- ============ 4. VALORACIÓN ============ -->
-<section class="wide">
-  <div class="col section-head">
-    <span class="eyebrow">Motor determinista · Fase 2</span>
-    <h2>La valoración, y por qué los dos métodos no se ponen de acuerdo</h2>
-    <p>El motor calcula descuento de flujos con dos vías de valor terminal y no elige por ti: publica las dos. En esta corrida discrepan tanto que la discrepancia <em>es</em> el resultado — y apunta exactamente al mismo sitio que los supuestos rotos.</p>
-  </div>
-
-  <figure class="chart-card">
-    <h3 class="chart-title">Rango de valor por acción, por escenario y método</h3>
-    <p class="chart-sub">Cada barra une el valor que da el método Gordon (basado en flujo de caja libre) con el que da el múltiplo de salida (basado en EBITDA). La distancia entre ambos extremos no es ruido: es el capex comiéndose el flujo de caja perpetuo.</p>
-    <div class="legend">
-      <span><i class="swatch sq" style="background:var(--s1)"></i>Gordon · sobre FCFF</span>
-      <span><i class="swatch sq" style="background:var(--s2)"></i>Múltiplo de salida · sobre EBITDA</span>
-      <span><i class="swatch" style="background:var(--ink);height:2px"></i>Precio de mercado</span>
-    </div>
-    <div class="chart-scroll">
-      <svg class="chart" viewBox="0 0 760 300" role="img" aria-label="Rango de valoración por escenario. Pesimista de 9,82 a 117,57 dólares; base de 74,42 a 218,36; optimista de 196,81 a 346,49. Valor esperado ponderado de 88,87 a 225,19. Precio de mercado 318,56.">
-        <line class="gridline" x1="130" y1="34" x2="130" y2="250"/>
-        <line class="gridline" x1="288.3" y1="34" x2="288.3" y2="250"/>
-        <line class="gridline" x1="446.7" y1="34" x2="446.7" y2="250"/>
-        <line class="gridline" x1="605" y1="34" x2="605" y2="250"/>
-
-        <line x1="634.4" y1="34" x2="634.4" y2="238" stroke="var(--ink)" stroke-width="2"/>
-        <text x="634.4" y="26" text-anchor="middle" fill="var(--ink)" style="font-size:11px">MERCADO 318,56</text>
-
-        <text x="120" y="64" text-anchor="end" fill="var(--ink-2)">Pesimista</text>
-        <text x="120" y="78" text-anchor="end" style="font-size:10px">25 %</text>
-        <line x1="145.5" y1="60" x2="316.2" y2="60" stroke="var(--rule)" stroke-width="6" stroke-linecap="round"/>
-        <circle class="hit" cx="145.5" cy="60" r="6.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" data-k="Pesimista · Gordon" data-v="9,82 $ por acción"/>
-        <circle class="hit" cx="316.2" cy="60" r="6.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2" data-k="Pesimista · múltiplo de salida" data-v="117,57 $ por acción"/>
-
-        <text x="120" y="122" text-anchor="end" fill="var(--ink-2)">Base</text>
-        <text x="120" y="136" text-anchor="end" style="font-size:10px">50 %</text>
-        <line x1="247.8" y1="118" x2="475.7" y2="118" stroke="var(--rule)" stroke-width="6" stroke-linecap="round"/>
-        <circle class="hit" cx="247.8" cy="118" r="6.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" data-k="Base · Gordon" data-v="74,42 $ por acción"/>
-        <circle class="hit" cx="475.7" cy="118" r="6.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2" data-k="Base · múltiplo de salida" data-v="218,36 $ por acción"/>
-
-        <text x="120" y="180" text-anchor="end" fill="var(--ink-2)">Optimista</text>
-        <text x="120" y="194" text-anchor="end" style="font-size:10px">25 %</text>
-        <line x1="441.6" y1="176" x2="678.6" y2="176" stroke="var(--rule)" stroke-width="6" stroke-linecap="round"/>
-        <circle class="hit" cx="441.6" cy="176" r="6.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" data-k="Optimista · Gordon" data-v="196,81 $ por acción"/>
-        <circle class="hit" cx="678.6" cy="176" r="6.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2" data-k="Optimista · múltiplo de salida" data-v="346,49 $ por acción"/>
-
-        <line class="axis" x1="130" y1="212" x2="740" y2="212"/>
-        <text x="120" y="238" text-anchor="end" fill="var(--ink)" style="font-size:11.5px">Ponderado</text>
-        <line x1="270.7" y1="234" x2="486.5" y2="234" stroke="var(--rule)" stroke-width="8" stroke-linecap="round"/>
-        <circle class="hit" cx="270.7" cy="234" r="7.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" data-k="Esperado ponderado · Gordon" data-v="88,87 $ por acción"/>
-        <circle class="hit" cx="486.5" cy="234" r="7.5" fill="var(--s2)" stroke="var(--surface)" stroke-width="2" data-k="Esperado ponderado · múltiplo" data-v="225,19 $ por acción"/>
-        <text class="val" x="270.7" y="256" text-anchor="middle" fill="var(--ink)">88,87</text>
-        <text class="val" x="486.5" y="256" text-anchor="middle" fill="var(--ink)">225,19</text>
-
-        <text x="130" y="286" text-anchor="middle">0 $</text>
-        <text x="288.3" y="286" text-anchor="middle">100 $</text>
-        <text x="446.7" y="286" text-anchor="middle">200 $</text>
-        <text x="605" y="286" text-anchor="middle">300 $</text>
-      </svg>
-    </div>
-    <figcaption>Corrida del 27 jul 2026. Precio de referencia: 318,56 $ (Clase C, cierre del 26 jul 2026). El sistema no emite precios objetivo ni recomendaciones: publica el rango con sus hipótesis explícitas.</figcaption>
-  </figure>
-
-  <div class="col" style="margin:30px 0">
-    <div class="callout">
-      <span class="lbl">Limitación conocida del motor, no maquillada</span>
-      <p style="margin:0">El método Gordon mantiene el capex al mismo porcentaje de ingresos en el año terminal que durante la fase de crecimiento, lo cual es demasiado punitivo para una perpetuidad: en estado estacionario el capex debería converger hacia el nivel de mantenimiento. Por eso los valores de Gordon salen tan por debajo. Queda documentado en vez de corregido sobre la marcha, para que nadie tome el número de Gordon como si fuera limpio.</p>
-    </div>
-  </div>
-
-  <figure class="chart-card">
-    <h3 class="chart-title">Sensibilidad del escenario base</h3>
-    <p class="chart-sub">Valor por acción en dólares según coste de capital y crecimiento a perpetuidad, método Gordon. Ninguna combinación razonable de parámetros acerca este método al precio de mercado — lo que confirma que la brecha es estructural del supuesto de capex, no de la elección de tasa.</p>
-    <div class="chart-scroll">
-      <table class="heat">
-        <thead>
-          <tr>
-            <th class="rowh">WACC ╲ g</th>
-            <th>1,5 %</th><th>2,0 %</th><th>2,5 %</th><th>3,0 %</th><th>3,5 %</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th class="rowh">8,0 %</th><td class="s3c">81,79</td><td class="s3c">86,56</td><td class="s4c">92,18</td><td class="s5c">98,94</td><td class="s6c">107,19</td></tr>
-          <tr><th class="rowh">8,5 %</th><td class="s2c">76,59</td><td class="s3c">80,60</td><td class="s3c">85,27</td><td class="s4c">90,80</td><td class="s5c">97,43</td></tr>
-          <tr><th class="rowh">9,0 %</th><td class="s2c">72,09</td><td class="s2c">75,50</td><td class="s3c">79,43</td><td class="s3c">84,02</td><td class="s4c">89,44</td></tr>
-          <tr><th class="rowh">9,5 %</th><td class="s1c">68,15</td><td class="s2c">71,08</td><td class="s2c">74,42</td><td class="s2c">78,29</td><td class="s3c">82,79</td></tr>
-          <tr><th class="rowh">10,0 %</th><td class="s1c">64,67</td><td class="s1c">67,21</td><td class="s1c">70,09</td><td class="s2c">73,37</td><td class="s2c">77,17</td></tr>
-          <tr><th class="rowh">10,5 %</th><td class="s0">61,59</td><td class="s1c">63,81</td><td class="s1c">66,30</td><td class="s1c">69,12</td><td class="s2c">72,35</td></tr>
-          <tr><th class="rowh">11,0 %</th><td class="s0">58,83</td><td class="s0">60,78</td><td class="s1c">62,95</td><td class="s1c">65,40</td><td class="s1c">68,18</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="heat-scale">
-      <span>58,83 $</span>
-      <span class="steps"><i class="s0"></i><i class="s1c"></i><i class="s2c"></i><i class="s3c"></i><i class="s4c"></i><i class="s5c"></i><i class="s6c"></i></span>
-      <span>107,19 $</span>
-    </div>
-    <figcaption>El escenario base usa un WACC del 9,5 % y un crecimiento terminal del 2,5 % — la celda central, 74,42 $.</figcaption>
-  </figure>
-</section>
-
-<!-- ============ 5. BACKTEST ============ -->
-<section class="wide">
-  <div class="col section-head">
-    <span class="eyebrow">Validación · Fase 5</span>
-    <h2>¿El método tiene criterio, o solo elocuencia?</h2>
-    <p>Un análisis que suena bien y acierta poco es peor que no tener sistema, porque da confianza injustificada. La prueba: reconstruir qué habría dicho el sistema en 2019, con la información disponible entonces, y compararlo con lo que pasó. Tres empresas, dos de ellas elegidas porque la tesis <em>debía</em> fallar.</p>
-  </div>
-
-  <div class="cases">
-    <div class="case">
-      <span class="tick">BA · Boeing</span>
-      <span class="kind">Debía fallar — 9 mar 2019</span>
-      <p class="verdict">La evidencia estaba dividida y disponible: dos ex ingenieros de Boeing ya calificaban públicamente el sistema MCAS de punto único de fallo, mientras el único informe oficial de investigación apuntaba al mantenimiento del operador. <strong>Un riesgo con indicador y umbral habría quedado en «sin resolver», no en «vigente».</strong></p>
-      <span class="score">Alerta parcial pero real · patrimonio neto negativo seis años seguidos</span>
-    </div>
-    <div class="case">
-      <span class="tick">KHC · Kraft Heinz</span>
-      <span class="kind">Debía fallar — 20 feb 2019</span>
-      <p class="verdict">El dato que lo delataba estaba en el balance de 2017 y no requería adivinar nada: <strong>el fondo de comercio equivalía al 68 % del patrimonio neto</strong>. Un mes después llegó el deterioro de 15.400 millones, el recorte del dividendo y la investigación del regulador.</p>
-      <span class="score">Alerta de alta confianza · el dividendo nunca se recuperó</span>
-    </div>
-    <div class="case">
-      <span class="tick">NVDA · NVIDIA</span>
-      <span class="kind">Ganador espectacular — mar 2019</span>
-      <p class="verdict">Habría capturado bien lo proyectable —la tendencia de centro de datos, la ciclicidad real del negocio— y <strong>no podía ni debía predecir la magnitud del auge de la IA generativa</strong>. Un sistema que «acertara» eso con evidencia de 2019 sería sospechoso, no fiable.</p>
-      <span class="score">Límite correcto · ingresos ×8 en tres años, imposible de proyectar</span>
-    </div>
-  </div>
-
-  <div class="col" style="margin-top:34px">
-    <h3 style="margin-bottom:0.5em">Lo que el backtest cambió del sistema</h3>
-    <p>La lección más útil vino de Boeing, y no era la esperada. La ventana de información pública realmente fuerte duró unos ocho días de noviembre de 2018; después el tema desapareció del ciclo de noticias durante tres meses y medio, hasta el segundo accidente. <strong>Un riesgo marcado como «vigilar» puede quedar obsoleto en el archivo sin que nadie lo note, porque el silencio no significa que se haya resuelto.</strong> Ese hallazgo es exactamente lo que justifica el control anti-deriva.</p>
-  </div>
-</section>
-
-<!-- ============ 6. ESTADO / LÍMITES ============ -->
-<section class="wide">
-  <div class="col section-head">
-    <span class="eyebrow">Honestidad de alcance</span>
-    <h2>Lo que este sistema todavía no hace</h2>
-    <p>Todo lo anterior está construido, probado y corrido contra evidencia real. Estas son las piezas que quedan abiertas, y el motivo — porque un sistema que oculta sus huecos es peor que uno que los declara.</p>
+    <span class="eyebrow">Segunda división</span>
+    <h2>El banquillo</h2>
+    <p>Cuarenta y ocho empresas con métricas refrescadas, sin tesis ni narrativa: solo retorno sobre capital, crecimiento y apalancamiento. Sirven para tener candidatos con historial cuando quede libre una de las quince plazas.</p>
   </div>
   <div class="col">
-    <ul class="gaps">
-      <li>
-        <span class="tag">Banquillo</span>
-        <span>Tres de las seis métricas están vacías a propósito: rentabilidad por flujo de caja y los múltiplos necesitan precio de mercado histórico, que exige contratar un agregador. No se rellenan con estimaciones.</span>
-      </li>
-      <li>
-        <span class="tag">Japón</span>
-        <span>El cliente de EDINET está escrito contra la especificación oficial pero <em>nunca se ejecutó en vivo</em>: requiere registrar una clave de suscripción, que es una acción del usuario.</span>
-      </li>
-      <li>
-        <span class="tag">Materialidad</span>
-        <span>El filtro barato que descarta el 95 % de las noticias está implementado y testeado, pero no hay ninguna fuente de noticias conectada todavía.</span>
-      </li>
-      <li>
-        <span class="tag">Backtest</span>
-        <span>Es cualitativo: compara supuestos reconstruidos contra hechos reales, no valoraciones numéricas de 2019. Un backtest cuantitativo completo sigue pendiente.</span>
-      </li>
-      <li>
-        <span class="tag">Cobertura</span>
-        <span>Una sola empresa en profundidad de las quince previstas. El resto del sistema está construido; falta poblarlo.</span>
-      </li>
-    </ul>
+    <div class="callout">
+      <span class="lbl">Cobertura parcial, dicho de frente</span>
+      <p style="margin:0">Tres de las seis métricas del banquillo están vacías a propósito: rentabilidad por flujo de caja y los múltiplos necesitan precio de mercado histórico, que exige contratar un agregador. No se rellenan con estimaciones.</p>
+    </div>
   </div>
 </section>
 
@@ -1010,58 +110,123 @@ ul.gaps .tag {
 </div>
 
 <div id="tip" role="status" aria-live="polite"></div>
+
+<script src="assets/app.js"></script>
 <script>
 (function () {
-  var tip = document.getElementById('tip');
-  if (!tip) return;
+  var form = document.getElementById('formAlta'),
+      input = document.getElementById('ticker'),
+      btn = document.getElementById('btnAlta'),
+      res = document.getElementById('resultado'),
+      mapa = null;
 
-  function show(el, x, y) {
-    var k = el.getAttribute('data-k'), v = el.getAttribute('data-v');
-    if (!k && !v) return;
-    tip.innerHTML = '<span class="tk"></span><span class="tv"></span>';
-    tip.querySelector('.tk').textContent = k || '';
-    tip.querySelector('.tv').textContent = v || '';
-    tip.classList.add('on');
-    var r = tip.getBoundingClientRect();
-    var left = Math.min(Math.max(8, x + 14), window.innerWidth - r.width - 8);
-    var top = y - r.height - 14;
-    if (top < 8) top = y + 18;
-    tip.style.left = left + 'px';
-    tip.style.top = top + 'px';
-  }
-  function hide() { tip.classList.remove('on'); }
-
-  document.querySelectorAll('.hit').forEach(function (el) {
-    el.setAttribute('tabindex', '0');
-    var k = el.getAttribute('data-k'), v = el.getAttribute('data-v');
-    if (k || v) el.setAttribute('aria-label', (k || '') + ': ' + (v || ''));
-    el.addEventListener('pointerenter', function (e) { show(el, e.clientX, e.clientY); });
-    el.addEventListener('pointermove', function (e) { show(el, e.clientX, e.clientY); });
-    el.addEventListener('pointerleave', hide);
-    el.addEventListener('focus', function () {
-      var b = el.getBoundingClientRect();
-      show(el, b.left + b.width / 2, b.top);
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
-    el.addEventListener('blur', hide);
-  });
-  window.addEventListener('scroll', hide, { passive: true });
-})();
+  }
 
-(function () {
-  var root = document.documentElement, btn = document.getElementById('themeToggle'),
-      lbl = document.getElementById('themeLabel'), KEY = 'af-tema';
-  function sysDark() { return matchMedia('(prefers-color-scheme: dark)').matches; }
-  function paint(t) { lbl.textContent = t === 'dark' ? 'Oscuro' : 'Claro'; }
-  var saved = null;
-  try { saved = localStorage.getItem(KEY); } catch (e) {}
-  if (saved) { root.setAttribute('data-theme', saved); paint(saved); }
-  else { paint(sysDark() ? 'dark' : 'light'); }
-  btn.addEventListener('click', function () {
-    var cur = root.getAttribute('data-theme') || (sysDark() ? 'dark' : 'light');
-    var next = cur === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem(KEY, next); } catch (e) {}
-    paint(next);
+  function cargarMapa() {
+    if (mapa) return Promise.resolve(mapa);
+    return fetch('assets/tickers.json')
+      .then(function (r) { if (!r.ok) throw new Error('mapa'); return r.json(); })
+      .then(function (j) { mapa = j; return j; });
+  }
+
+  // El filing mas reciente de cada formulario, leyendo las columnas paralelas
+  // que devuelve SEC EDGAR en filings.recent.
+  function ultimos(sub) {
+    var r = (sub.filings && sub.filings.recent) || {}, out = {};
+    var f = r.form || [], d = r.filingDate || [];
+    for (var i = 0; i < f.length; i++) {
+      if (!out[f[i]]) out[f[i]] = d[i];
+    }
+    return out;
+  }
+
+  function comandos(tk, sub) {
+    var nombre = (sub.name || '').replace(/"/g, "'");
+    var mercado = (sub.exchanges && sub.exchanges.length) ? sub.exchanges.join(', ') : 'EE. UU.';
+    var sector = (sub.sicDescription || '').replace(/"/g, "'");
+    return '' +
+      '<span class="c"># 1 · carpeta y ficha de identidad</span>\n' +
+      'cd analisis-fundamental\n' +
+      'mkdir -p empresas/' + tk + '/evidencia\n' +
+      "cat > empresas/" + tk + "/identidad.yaml <<'YAML'\n" +
+      'empresa: ' + nombre + '\n' +
+      'ticker: ' + tk + '\n' +
+      'mercado: "' + mercado + '"\n' +
+      'sector: "' + sector + '"\n' +
+      'moneda_reporte: USD\n' +
+      'norma_contable: US GAAP\n' +
+      'YAML\n\n' +
+      '<span class="c"># 2 · descargar la evidencia desde SEC EDGAR</span>\n' +
+      'export SEC_EDGAR_USER_AGENT="Nombre Apellido tu@email.com"\n' +
+      'python -m ingesta.actualizar ' + tk + ' --fetch\n\n' +
+      '<span class="c"># 3 · la tesis y los supuestos se escriben a mano.</span>\n' +
+      '<span class="c">#     Este paso no se delega: es donde se define si hay criterio.</span>';
+  }
+
+  function pinta(tk, sub) {
+    var u = ultimos(sub),
+        tiene10K = u['10-K'], tiene10Q = u['10-Q'];
+    var meta = [];
+    if (sub.sicDescription) meta.push('Sector · ' + esc(sub.sicDescription));
+    if (sub.exchanges && sub.exchanges.length) meta.push('Mercado · ' + esc(sub.exchanges.join(', ')));
+    meta.push('CIK · ' + esc(sub.cik));
+    var filings = [];
+    ['10-K', '10-Q', '8-K', 'DEF 14A'].forEach(function (f) {
+      if (u[f]) filings.push(f + ' ' + u[f]);
+    });
+
+    var aviso = '';
+    if (!tiene10K && !tiene10Q) {
+      aviso = '<p class="aviso" style="margin:10px 0 0">Sin 10-K ni 10-Q recientes. Puede ser un emisor extranjero (20-F) o un fondo, y el motor está pensado para empresas que reportan en US GAAP.</p>';
+    }
+
+    res.innerHTML =
+      '<div class="cab"><span class="t">' + esc(tk) + '</span><span>' + esc(sub.name || '') + '</span></div>' +
+      '<div class="meta">' + meta.join(' &nbsp;·&nbsp; ') + '</div>' +
+      (filings.length ? '<div class="meta">Último de cada tipo &nbsp;·&nbsp; ' + esc(filings.join('  ·  ')) + '</div>' : '') +
+      aviso +
+      '<div class="cmd"><button class="copiar" type="button">Copiar</button><pre>' + comandos(tk, sub) + '</pre></div>';
+
+    var bc = res.querySelector('.copiar');
+    bc.addEventListener('click', function () {
+      var txt = res.querySelector('.cmd pre').innerText;
+      navigator.clipboard.writeText(txt).then(function () {
+        bc.textContent = 'Copiado';
+        setTimeout(function () { bc.textContent = 'Copiar'; }, 1600);
+      }, function () { bc.textContent = 'No se pudo'; });
+    });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var tk = (input.value || '').trim().toUpperCase();
+    if (!tk) return;
+    btn.disabled = true;
+    res.innerHTML = '<div class="meta">Consultando SEC EDGAR…</div>';
+
+    cargarMapa()
+      .then(function (m) {
+        var cik = m[tk];
+        if (!cik) throw { tipo: 'noexiste' };
+        var pad = String(cik).padStart(10, '0');
+        return fetch('https://data.sec.gov/submissions/CIK' + pad + '.json');
+      })
+      .then(function (r) { if (!r.ok) throw { tipo: 'sec', st: r.status }; return r.json(); })
+      .then(function (sub) { pinta(tk, sub); })
+      .catch(function (err) {
+        if (err && err.tipo === 'noexiste') {
+          res.innerHTML = '<p class="err" style="margin:0">No hay ninguna empresa con el ticker <strong>' + esc(tk) + '</strong> registrada en la SEC. Comprueba la grafía; solo cubre mercados de EE.&nbsp;UU.</p>';
+        } else if (err && err.tipo === 'sec') {
+          res.innerHTML = '<p class="err" style="margin:0">La SEC respondió con un error (' + esc(err.st) + '). Vuelve a intentarlo en unos segundos.</p>';
+        } else {
+          res.innerHTML = '<p class="err" style="margin:0">No se pudo contactar con SEC EDGAR. Puede ser un corte de red o un bloqueo del navegador.</p>';
+        }
+      })
+      .then(function () { btn.disabled = false; });
   });
 })();
 </script>

@@ -1,24 +1,49 @@
-# Análisis fundamental — estado de la tesis
+# Análisis fundamental — tesis de inversión vivas
 
-Página de lectura del sistema de tesis de inversión vivas. Estática, un solo
-archivo, sin dependencias externas. Publica el estado de los supuestos sobre
-Alphabet (GOOGL), la valoración por escenarios y el resultado del backtest.
+Capa de lectura del sistema de análisis fundamental. Estática, sin build.
+Publica el estado de los supuestos de cada empresa, la valoración por
+escenarios y el resultado del backtest.
 
 Live: **https://analysis.pampaiter.com**
 
 ```
 analisis-web/
-├── index.html      # la página entera: CSS y JS en línea, sin assets externos
-├── CNAME           # analysis.pampaiter.com
+├── index.html          # índice: tesis vivas, alta de empresa, banquillo
+├── googl/index.html    # tesis de Alphabet
+├── assets/
+│   ├── base.css        # sistema de diseño, compartido por todas las páginas
+│   ├── app.js          # selector de tema + tooltips de los gráficos
+│   └── tickers.json    # mapa ticker → CIK de la SEC (10 432 empresas)
+├── CNAME               # analysis.pampaiter.com
 ├── robots.txt
 └── sitemap.xml
 ```
 
-## Por qué un solo archivo
+Al añadir una empresa: crear `TICKER/index.html` (copiar la estructura de
+`googl/`), añadir su tarjeta en el índice y su URL en `sitemap.xml`.
 
-No hay CDN, ni fuentes remotas, ni peticiones de red de ningún tipo: todo va
-en línea. Eso hace que la página funcione abierta como archivo local, servida
-por Pages, o incrustada donde sea, sin romperse.
+## Qué hace el formulario de alta — y qué no
+
+Escribes un ticker y la página resuelve su CIK contra el mapa empaquetado,
+consulta SEC EDGAR en vivo y te dice si la empresa existe, su sector, su
+mercado y el último documento de cada tipo que ha presentado. Con eso genera
+los comandos exactos para dar de alta la empresa en el repositorio de
+análisis.
+
+**No ejecuta el análisis.** No hay backend: la ingesta y el motor de
+valoración son Python y corren en local. La web es capa de lectura y
+lanzadera, nada más — la tesis y los supuestos se escriben a mano, que es
+donde se decide si el sistema tiene criterio.
+
+Dos límites heredados de la fuente:
+
+- Solo cubre emisores que reportan a la SEC. Si el ticker es un ADR o un
+  emisor extranjero que presenta 20-F en vez de 10-K, la página lo detecta
+  y lo advierte.
+- El mapa `tickers.json` va empaquetado porque `www.sec.gov` no permite
+  peticiones CORS desde el navegador. `data.sec.gov` sí, y de ahí sale el
+  resto en vivo. Conviene regenerarlo de vez en cuando desde
+  `https://www.sec.gov/files/company_tickers.json`.
 
 ## Sistema de diseño
 
@@ -37,9 +62,9 @@ por Pages, o incrustada donde sea, sin romperse.
 
 ## Origen de los datos
 
-Toda cifra viene de documentos presentados ante la SEC (10-K FY2025, 10-Q
-Q2 2026, 8-K, DEF 14A, Forms 3/4/5) o de series XBRL de SEC EDGAR. El
-repositorio que las produce es privado; esta web es solo la capa de lectura.
+Toda cifra viene de documentos presentados ante la SEC (10-K, 10-Q, 8-K,
+DEF 14A, Forms 3/4/5) o de series XBRL de SEC EDGAR. El repositorio que las
+produce es privado; este solo publica el resultado.
 
 ## Despliegue
 
