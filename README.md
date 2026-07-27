@@ -4,12 +4,12 @@ Página de lectura del sistema de tesis de inversión vivas. Estática, un solo
 archivo, sin dependencias externas. Publica el estado de los supuestos sobre
 Alphabet (GOOGL), la valoración por escenarios y el resultado del backtest.
 
-Live: **https://analisis.pampaiter.com**
+Live: **https://analysis.pampaiter.com**
 
 ```
 analisis-web/
 ├── index.html      # la página entera: CSS y JS en línea, sin assets externos
-├── CNAME           # analisis.pampaiter.com
+├── CNAME           # analysis.pampaiter.com
 ├── robots.txt
 └── sitemap.xml
 ```
